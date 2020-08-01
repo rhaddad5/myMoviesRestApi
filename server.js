@@ -32,5 +32,5 @@ app.get("/users", userController.getUsers);
 
 app.delete("/users", userController.destroyUsers);
 
-const port = 8000;
-app.listen(port, () => console.log(`Server listening to port ${port}`));
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`Server listening to port ${port}`));

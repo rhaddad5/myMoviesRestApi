@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const movieController = require("./Controllers/movieController");
 const userController = require("./Controllers/userController");
+require("dotenv").config();
 
 const app = express();
 app.use(cors({origin: true, credentials: true}));
@@ -18,9 +19,12 @@ app.use(express.json());
 
 // mongoose.connect("mongodb://localhost:27017/movies", {useNewUrlParser: true});
 
-const uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost:27017/movies";
+const mongoUser = process.env.MLAB_USER;
+const mongoAccount = process.env.MLAB_ACCOUNT;
+const mongoPassword = process.env.MLAB_PASSWORD;
 
-mongoose.connect(uristring, function (err, res) {
+const uri = `mongodb://${mongoUser}:${mongoPassword}@ds223015.mlab.com:23015/${mongoAccount}`;
+mongoose.connect(uri, function (err, res) {
       if (err) {
       console.log ('ERROR connecting to: ' + uristring + '. ' + err);
       } else {

@@ -24,13 +24,7 @@ const mongoAccount = process.env.MLAB_ACCOUNT;
 const mongoPassword = process.env.MLAB_PASSWORD;
 
 const uri = `mongodb://${mongoUser}:${mongoPassword}@ds223015.mlab.com:23015/${mongoAccount}`;
-mongoose.connect(uri, function (err, res) {
-      if (err) {
-      console.log ('ERROR connecting to: ' + uri + '. ' + err);
-      } else {
-      console.log ('Succeeded connected to: ' + uri);
-      }
-    });
+mongoose.connect(uri, {useNewUrlParser: true});
 
 app.post("/movies", userController.authenticateUser, movieController.createMovie);
 

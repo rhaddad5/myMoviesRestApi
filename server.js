@@ -6,7 +6,7 @@ const movieController = require("./Controllers/movieController");
 const userController = require("./Controllers/userController");
 
 const app = express();
-app.use(cors());
+app.use(cors({origin: true, credentials: true}));
 app.use(body());
 app.use(express.json());
 

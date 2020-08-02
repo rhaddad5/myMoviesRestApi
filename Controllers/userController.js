@@ -61,7 +61,7 @@ exports.login = async (req, res) => {
         const user2 = {email: email, username: username};
         const accessToken = jwt.sign(user2, process.env.ACCES_TOKEN_SECRET);
         const refreshToken = jwt.sign(user2, process.env.REFRESH_TOKEN_SECRET)
-        res.status(200).json({accessToken: accessToken, refreshToken: refreshToken, imageUrl: imageUrl})
+        res.status(200).json({accessToken: accessToken, refreshToken: refreshToken, imageUrl: imageUrl, username: username})
       } else {
         res.status(401).send("Wrong password");
       };

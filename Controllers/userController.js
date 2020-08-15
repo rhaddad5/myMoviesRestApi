@@ -27,12 +27,10 @@ exports.signup = async (req, res, next) => {
     } else {
       password = encrypted;
       if(!email || !password || !username) {
-        console.log("Field missing");
         res.status(404).send("Please complete all the fields");
         return;
       };
       if(existingUser) {
-        console.log("Email address already used")
         res.status(401).send("Email already used")
         return;
       };
@@ -43,7 +41,6 @@ exports.signup = async (req, res, next) => {
         imageUrl: imageUrl,
       });
       newUser.save();
-      console.log(newUser);
       res.status(200).json(newUser);
       return;
     }
